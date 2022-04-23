@@ -38,6 +38,7 @@ public class UltimateTTT {
             this.boards[i] = new Board(gameRowSize, gameColSize, "TTTGame");
         }
     }
+    //need to fix constructor to where original setBoard isn't called if setBoard(board) is used...
     public void setBoard(IBoard board) {
         boards = new IBoard[gameRowSize*gameColSize];
         for (int i = 0; i < boards.length; i++) {
