@@ -49,6 +49,7 @@ public class Board implements IBoard{
     private String name;
     private int rowSize;
     private int colSize;
+    String winner = "";
     
     public Board() {
         this(3, 3, "3x3 board");
@@ -89,7 +90,7 @@ public class Board implements IBoard{
         print();
     }
     public void reset() {
-        //implement
+        
     }
     public void print() {
         System.out.println("Printing the " + this.name + "-" + this.rowSize + "*" + this.colSize + " board info...");
@@ -115,6 +116,12 @@ public class Board implements IBoard{
     }
     public String getMark(int row, int col) {
         return boxes[row * this.rowSize + col].getPlaceHolder();
+    }
+    public void setWinner(String winner) {
+        this.winner = winner;
+    }
+    public String getWinner() {
+        return winner;
     }
     // public boolean checkRow() { //Go through each row of the array and check to see if (rowSize) in a row are the same player mark.
     //     int counter = 0; 

@@ -4,7 +4,7 @@ public class OtherBoard{
 	private int boardColSize;
 	private char[][] board;
 	private String name;
-
+	private String winner;
 
 	OtherBoard(){
 		this(3, 3, "TTT 2D array of char");
@@ -57,13 +57,6 @@ public class OtherBoard{
 		}else return false;
 	}
 
-	//	public boolean makeMove(String s, Move m) {
-	//		if(board[m.getRow()][m.getCol()] == Mark.DASH.getMark().charAt(0)){
-	//			board[m.getRow()][m.getCol()] = s.charAt(0);
-	//			return true;
-	//		}else return false;
-	//	}
-
 	public void setSize(int row, int col) {
 		this.boardRowSize = row;
 		this.boardColSize = col;
@@ -79,7 +72,7 @@ public class OtherBoard{
 	}
 
 	public void reset() {
-		// TODO Auto-generated method stub
+		//implement
 
 	}
 
@@ -107,20 +100,10 @@ public class OtherBoard{
 			}
 		return emptyCells;
 	}
-	//	public Move[] getAllPossibleMoves() {
-	//		Move[] validMoves = new Move[availability()];
-	//		int count = 0;
-	//		for(int i = 0 ; i < board.length; i++){
-	//			for(int j = 0 ; j < board[i].length; j++){
-	//				if(board[i][j] == Mark.DASH.getMark().charAt(0)) {
-	//					Move m = new Move(i,j);
-	//					validMoves[count++] = m;
-	//				}
-	//			}
-	//		}
-	//		return validMoves;
-	//	}
-
-
-
+	public void setWinner(String winner) {
+		this.winner = winner;
+	}
+	public String getWinner() {
+		return winner;
+	}
 }

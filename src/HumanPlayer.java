@@ -11,9 +11,12 @@ public class HumanPlayer extends APlayer{
     public int selectRowValue(int range) {
         range-=1;
         System.out.println("Please enter a valid row number from 0 to " + range);
-        int row;
+        int row = -1;
         do {
-            row = input.nextInt();
+            String rowString = input.nextLine();
+            if (rowString.length() == 1 && rowString.matches("[0-9]")) {
+                row = Integer.parseInt(rowString);
+            }
             if (row < 0 || row > range) {
                 System.out.println("Invalid move! Enter a number from 0 to " + range);
             }
@@ -24,9 +27,12 @@ public class HumanPlayer extends APlayer{
     public int selectColValue(int range) {
         range-=1;
         System.out.println("Please enter a valid column number from 0 to " + range);
-        int col;
+        int col = -1;
         do {
-            col = input.nextInt();
+            String colString = input.nextLine();
+            if (colString.length() == 1 && colString.matches("[0-9]")) {
+                col = Integer.parseInt(colString);
+            }
             if (col < 0 || col > range) {
                 System.out.println("Invalid move! Enter a number from 0 to " + range);
             }

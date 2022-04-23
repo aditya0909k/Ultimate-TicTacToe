@@ -8,4 +8,6 @@ public interface IBoard {
     int getColSize();
     String getName();
     boolean isFull();
+    String getWinner();
+    void setWinner(String winner);
 }

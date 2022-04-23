@@ -1,3 +1,20 @@
+//DO NOT USE
+//DO NOT USE
+//DO NOT USE
+//DO NOT USE
+//DO NOT USE
+//DO NOT USE
+//DO NOT USE
+//DO NOT USE
+//DO NOT USE
+//DO NOT USE
+//DO NOT USE
+//DO NOT USE
+
+//FOR TESTING DRIVERMAIN ONLY
+
+
+
 //Aditya Kulkarni CS2336.003
 
 /* Problem analysis
@@ -26,7 +43,7 @@ For the isWinner method, I will
 public class TTTGame {
     private APlayer[] players = new APlayer[2];
     private IBoard board;
-   
+    
     private String[] marks = {"X", "O"};
     private String name = "TicTacToe";
     
@@ -51,7 +68,7 @@ public class TTTGame {
         players[1] = player2;
     }
     private void setBoard() {
-        this.board = new Board(gameRowSize, gameColSize, "TTTGame");
+        this.board = new Board(gameRowSize, gameColSize, "Ultimate TTTGame");
     }
     public void setBoard(IBoard board) {
         this.board = board;
