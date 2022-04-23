@@ -10,7 +10,6 @@
 
 public interface IBoard {
     void print();
-    void reset();
     String getMark(int row, int col);
     boolean makeMove(String player, int square);
     void setSize(int row, int col);
@@ -20,4 +19,5 @@ public interface IBoard {
     boolean isFull();
     String getWinner();
     void setWinner(String winner);
+    boolean gameOver();
 }

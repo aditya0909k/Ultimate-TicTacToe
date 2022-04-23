@@ -17,10 +17,14 @@ public class ComputerPlayer extends APlayer{
     }
     @Override
     public int selectBoard(int range) {
-        return randomNumber(range);
+        int board = randomNumber(range);
+        System.out.println("Computer selected board: " + board);
+        return board;
     }
     @Override
     public int selectBoardValue(int range) {
-        return randomNumber(range);
+        int square = randomNumber(range);
+        System.out.println("Computer selected square: " + square);
+        return square;
     }
 }

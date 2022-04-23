@@ -22,10 +22,6 @@ public class OtherBoardWrapper implements IBoard{
         otherboard.printMyBoard();
     }
     @Override
-    public void reset() {
-        otherboard.reset();
-    }
-    @Override
     public String getMark(int row, int col) {
         return otherboard.getMark(row, col);
     }
@@ -60,5 +56,9 @@ public class OtherBoardWrapper implements IBoard{
     @Override
     public void setWinner(String winner) {
         otherboard.setWinner(winner);
+    }
+    @Override
+    public boolean gameOver() {
+        return otherboard.gameOver();
     }
 }

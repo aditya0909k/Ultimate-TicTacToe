@@ -13,8 +13,10 @@ public class Board implements IBoard{
     private String name;
     private int rowSize;
     private int colSize;
-    String winner = "";
+    private String winner = "";
     private int boardNumber;
+    private boolean gameOver = false;
+    
     
     public Board() {
         this(3, 3, "3x3 board");
@@ -63,6 +65,7 @@ public class Board implements IBoard{
     public void reset() {
         
     }
+
     public void print() {
         System.out.println("Printing the " + this.name + "-" + this.rowSize + "*" + this.colSize + " board info...");
         for (int i = 0; i < boxes.length; i++) {
@@ -73,6 +76,8 @@ public class Board implements IBoard{
         System.out.println("");
     }
     public boolean makeMove(String mark, int square) { 
+        if (gameOver())
+            return false;
         int index = square; 
         if (boxes[index].setPlaceHolder(mark)) 
                 return true;
@@ -90,8 +95,12 @@ public class Board implements IBoard{
     }
     public void setWinner(String winner) {
         this.winner = winner;
+        this.gameOver = true;
     }
     public String getWinner() {
         return winner;
+    }
+    public boolean gameOver() {
+        return gameOver;
     }
 }

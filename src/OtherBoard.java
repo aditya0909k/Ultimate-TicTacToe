@@ -14,6 +14,7 @@ public class OtherBoard{
 	private char[][] board;
 	private String name;
 	private String winner;
+	private boolean gameOver = false;
 
 	OtherBoard(){
 		this(3, 3, "TTT 2D array of char");
@@ -95,8 +96,12 @@ public class OtherBoard{
 	}
 	public void setWinner(String winner) {
 		this.winner = winner;
+		this.gameOver = true;
 	}
 	public String getWinner() {
 		return winner;
+	}
+	public boolean gameOver() {
+		return gameOver;
 	}
 }
