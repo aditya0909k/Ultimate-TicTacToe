@@ -1,8 +1,22 @@
-import javax.print.attribute.standard.MediaSize.Other;
+//Aditya Kulkarni CS2336.003
+
+/* Problem analysis
+
+*/
+
+/* Problem solution
+
+*/
 
 public class OtherBoardWrapper implements IBoard{
-    OtherBoard otherboard = new OtherBoard();
+    OtherBoard otherboard;
 
+    public OtherBoardWrapper() {
+        otherboard = new OtherBoard();
+    }
+    public OtherBoardWrapper(int row, int col, String name) {
+        otherboard = new OtherBoard(row, col, name);
+    }
     @Override
     public void print() {
         otherboard.printMyBoard();
@@ -16,8 +30,8 @@ public class OtherBoardWrapper implements IBoard{
         return otherboard.getMark(row, col);
     }
     @Override
-    public boolean makeMove(String player, int row, int col) {
-        return otherboard.setMark(row, col, player);
+    public boolean makeMove(String player, int square) {
+        return otherboard.setMark(player, square);
     }
     @Override
     public void setSize(int row, int col) {

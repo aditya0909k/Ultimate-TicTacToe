@@ -1,6 +1,17 @@
+//Aditya Kulkarni CS2336.003
+
+/* Problem analysis
+
+*/
+
+/* Problem solution
+
+*/
+
 public abstract class APlayer {
     private String name;
     private String mark;
+    
     public APlayer(String name, String mark) {
         setName(name);
         setMark(mark);
@@ -17,7 +28,6 @@ public abstract class APlayer {
     public void setMark(String mark) {
         this.mark = mark;
     }
-
-    public abstract int selectRowValue(int range);
-    public abstract int selectColValue(int range);
+    public abstract int selectBoard(int range);
+    public abstract int selectBoardValue(int range);
 }

@@ -1,3 +1,13 @@
+//Aditya Kulkarni CS2336.003
+
+/* Problem analysis
+
+*/
+
+/* Problem solution
+
+*/
+
 public class UltimateTTT {
     private IBoard[] boards;
     private int gameRowSize = 3;
@@ -10,7 +20,7 @@ public class UltimateTTT {
 
     public UltimateTTT() {
         setPlayers();
-        setBoards();
+        setBoard();
     }
     private void setPlayers() {
         for (int i = 0; i < players.length; i++) {
@@ -22,24 +32,33 @@ public class UltimateTTT {
         players[0] = player1;
         players[1] = player2;
     }
-    private void setBoards() {
-        boards = new IBoard[gameRowSize*gameColSize];
+    private void setBoard() {
+        boards = new Board[gameRowSize*gameColSize];
         for (int i = 0; i < boards.length; i++) {
             this.boards[i] = new Board(gameRowSize, gameColSize, "TTTGame");
+        }
+    }
+    public void setBoard(IBoard board) {
+        boards = new IBoard[gameRowSize*gameColSize];
+        for (int i = 0; i < boards.length; i++) {
+            this.boards[i] = board;
         }
     }
 
     //
     //
-    // need to fix start method in commented area.
+    // need to fix Board class makeMove logic to implement the specific rules
     //
     //
     public void start() {
-        System.out.println("Game has started...");
+        System.out.println("==== WELCOME TO THE ULTIMATE TIC-TAC-TOE GAME!! ====");
+        print();
         do {
             switchPlayer();
-            // while (!board.makeMove(players[this.currentIndex].getMark(), 
-            //     players[this.currentIndex].selectRowValue(gameRowSize), players[this.currentIndex].selectColValue(gameColSize))); 
+            System.out.println("Current Player is: " + players[currentIndex].getMark());
+            int board = players[this.currentIndex].selectBoard(gameRowSize*gameColSize);
+            int square = players[this.currentIndex].selectBoardValue(gameColSize*gameColSize);
+            boards[board].makeMove(players[this.currentIndex].getMark(), square);
             print();
         } while(!gameOver());
     }
@@ -75,7 +94,7 @@ public class UltimateTTT {
     // need to change print method... a lot
     //
     //
-    public void print() { 
+    public void print() {         
         for (int i = 0; i < boards.length; i++) {
             boards[i].print();
         }
@@ -85,7 +104,6 @@ public class UltimateTTT {
     // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     //
     //
-
     public boolean isFull() {
         return isFull(boards);
     }

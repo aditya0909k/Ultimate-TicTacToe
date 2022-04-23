@@ -1,3 +1,13 @@
+//Aditya Kulkarni CS2336.003
+
+/* Problem analysis
+
+*/
+
+/* Problem solution
+
+*/
+
 enum Mark {
     X("X"),
     O("O"),
