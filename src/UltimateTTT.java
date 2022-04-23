@@ -8,7 +8,6 @@
 
 */
 
-
 public class UltimateTTT {
     private IBoard[] boards;
     private int gameRowSize = 3;
