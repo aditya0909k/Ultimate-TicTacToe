@@ -21,6 +21,7 @@ public class Box {
     public String getPlaceHolder() {
         return this.placeHolder;
     }
+
     public boolean setPlaceHolder(String placeHolder) {
         if (isAvailable()) {
             this.placeHolder = placeHolder;

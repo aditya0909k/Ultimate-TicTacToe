@@ -18,7 +18,7 @@ public class OtherBoardWrapper implements IBoard{
         otherboard = new OtherBoard(row, col, name);
     }
     @Override
-    public void print(int boardNum) {
+    public void print() {
         otherboard.printMyBoard();
     }
     @Override

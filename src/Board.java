@@ -24,9 +24,6 @@ public class Board implements IBoard{
     public Board(int rowSize, int colSize, String name) {
         this.setName(name);
         this.setSize(rowSize, colSize);
-        for (int i = 0; i < boxes.length; i++) {
-            boxes[i].setPlaceHolder(String.valueOf(i));
-        }
     }
     @Override
     public int getRowSize() {
@@ -68,10 +65,10 @@ public class Board implements IBoard{
             Box b = new Box(i/colSize, i%colSize);
             boxes[i] = b;
         }
-        print();
     }
+    @Override
     public void print() {
-        //System.out.println("Printing the " + this.name + "-" + this.rowSize + "*" + this.colSize + " board info...");
+        System.out.println("Printing the " + this.name + "-" + this.rowSize + "*" + this.colSize + " board info...");
         for (int i = 0; i < boxes.length; i++) {
             if (i != 0 && i%colSize == 0) { 
                 System.out.println();
@@ -85,21 +82,21 @@ public class Board implements IBoard{
         }
         System.out.println("");
     }
-    @Override
-    public void print(int boardNum) {
-        for (int i = 0; i < boxes.length; i++) {
-            if (i != 0 && i%colSize == 0) { 
-                System.out.println();
-                System.out.print("BOARD#" + boardNum + " | "); 
-            }
-            if (i == 0) {
-                System.out.print("BOARD#" + boardNum + " | ");;
-            }
-            boxes[i].print();
-            System.out.print("| ");
-        }
-        System.out.println("");
-    }
+   
+    // public void print(int boardNum) {
+    //     for (int i = 0; i < boxes.length; i++) {
+    //         if (i != 0 && i%colSize == 0) { 
+    //             System.out.println();
+    //             System.out.print("BOARD#" + boardNum + " | "); 
+    //         }
+    //         if (i == 0) {
+    //             System.out.print("BOARD#" + boardNum + " | ");;
+    //         }
+    //         boxes[i].print();
+    //         System.out.print("| ");
+    //     }
+    //     System.out.println("");
+    // }
     @Override
     public boolean makeMove(String mark, int square) {
         if (gameOver())
@@ -136,5 +133,14 @@ public class Board implements IBoard{
     @Override
     public boolean gameOver() {
         return gameOver;
+    }
+    public void changeBoxes() {
+        if (gameOver()) {
+            for (int i = 0; i < boxes.length; i++) {
+                if (boxes[i].isAvailable()) {
+                    boxes[i].setPlaceHolder("*");
+                }
+            }
+        }
     }
 }

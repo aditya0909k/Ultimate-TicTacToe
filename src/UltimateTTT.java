@@ -54,7 +54,7 @@ public class UltimateTTT {
     //
     //
     public void start() {
-        System.out.println("==== WELCOME TO THE ULTIMATE TIC-TAC-TOE GAME!! ====");
+        System.out.println("==== WELCOME TO THE ULTIMATE TIC-TAC-TOE GAME!! ==== \n");
         print();
         boolean start = true;
         int board;
@@ -136,11 +136,7 @@ public class UltimateTTT {
     //
     public void print() {         
         for (int i = 0; i < boards.length; i++) {
-            if (i != 0 && i%gameColSize == 0) {
-                System.out.println();
-            }
-            boards[i].print(i);
-            System.out.println();
+            boards[i].print();
         }
         for (int i = 0; i < boards.length; i++) {
             if (boards[i].gameOver()) {

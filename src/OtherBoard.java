@@ -33,9 +33,6 @@ public class OtherBoard{
 		}
 		printMyBoard()	;
 	}
-	public void reset() {
-//implement
-	}
 	public void printMyBoard() {
 		System.out.println("printing the " + this.name + " - " +
 				this.boardRowSize + "*" + this.boardColSize + " board info....");
@@ -58,8 +55,13 @@ public class OtherBoard{
 	public String getMark(int row, int col) {
 		return board[row][col] + "";
 	}
-//implement
 	public boolean setMark(String player, int square) { 
+		int row = square/getRowSize();
+		int col = square - (row*getRowSize());
+		if (board[row][col] == Mark.DASH.getMark().charAt(0)) {
+			board[row][col] = player.charAt(0);
+			return true;
+		}
 		return false;
 	}
 	public void setSize(int row, int col) {
@@ -112,7 +114,10 @@ public class OtherBoard{
 		return boardNumber;
 	}
 	public boolean isBoxAvailable(int box) {
-//implement (same formula as setmark)
-return false;
+		int row = box/getRowSize();
+		int col = box - (row*getRowSize());
+		if(board[row][col] == Mark.DASH.getMark().charAt(0))
+			return true;
+		return false;
 	}
 }
