@@ -15,8 +15,7 @@ public class Board implements IBoard{
     private int colSize;
     private String winner = "";
     private int boardNumber;
-    private boolean gameOver = false;
-    
+    private boolean gameOver = false;    
     
     public Board() {
         this(3, 3, "3x3 board");
@@ -68,13 +67,13 @@ public class Board implements IBoard{
     }
     @Override
     public void print() {
-        System.out.println("Printing the " + this.name + "-" + this.rowSize + "*" + this.colSize + " board info...");
         for (int i = 0; i < boxes.length; i++) {
             if (i != 0 && i%colSize == 0) { 
                 System.out.println();
                 System.out.print(" | "); 
             }
             if (i == 0) {
+                System.out.println("BOARD #" + getBoardNumber());
                 System.out.print(" | ");;
             }
             boxes[i].print();
@@ -99,8 +98,6 @@ public class Board implements IBoard{
     // }
     @Override
     public boolean makeMove(String mark, int square) {
-        if (gameOver())
-            return false;
         int index = square; 
         if (boxes[index].setPlaceHolder(mark)) 
                 return true;
@@ -125,6 +122,7 @@ public class Board implements IBoard{
     public void setWinner(String winner) {
         this.winner = winner;
         this.gameOver = true;
+        changeBoxes();
     }
     @Override
     public String getWinner() {
@@ -137,7 +135,7 @@ public class Board implements IBoard{
     public void changeBoxes() {
         if (gameOver()) {
             for (int i = 0; i < boxes.length; i++) {
-                if (boxes[i].isAvailable()) {
+                if (boxes[i].isAvailableDash()) {
                     boxes[i].setPlaceHolder("*");
                 }
             }

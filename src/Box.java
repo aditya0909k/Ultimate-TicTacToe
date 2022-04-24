@@ -29,8 +29,15 @@ public class Box {
         }
         return false;
     }
-    public boolean isAvailable() {
+    public boolean isAvailableDash() {
         return this.placeHolder.equals(Box.DASH);
+    }
+    public boolean isAvailable() {
+        if (this.placeHolder.equals(Box.DASH))
+            return true;
+        if (this.placeHolder.equals("*"))
+            return true;
+        return false;
     }
     public void print() {
         System.out.print(placeHolder + " ");
