@@ -74,11 +74,15 @@ public class UltimateTTT {
             System.out.println("Selected board: " + squareActingAsNextBoard);
             square = players[currentIndex].selectBoardValue(gameColSize*gameColSize);
             while (!boards[squareActingAsNextBoard].isBoxAvailable(square)) {
+                System.out.println("-----------------------------");
                 System.out.println("That square is already taken!");
+                System.out.println("-----------------------------");
                 square = players[currentIndex].selectBoardValue(gameColSize*gameColSize);
             }
             if (boards[squareActingAsNextBoard].isFull()) {
-                System.out.println("Lucky you! The board that player " + players[currentIndex].getMark() + " tried to send you to is full! You get to pick any board you would like.");
+                System.out.println("---------------------------------------------------------------------------");
+                System.out.println("The board that player " + players[currentIndex].getMark() + " tried to send you to is full! You get to pick any board you would like.");
+                System.out.println("---------------------------------------------------------------------------");
                 board = players[currentIndex].selectBoard(gameRowSize*gameRowSize);
                 squareActingAsNextBoard = players[currentIndex].selectBoardValue(gameColSize*gameColSize);
                 boards[board].makeMove(players[currentIndex].getMark(), squareActingAsNextBoard);
@@ -132,7 +136,11 @@ public class UltimateTTT {
     //
     public void print() {         
         for (int i = 0; i < boards.length; i++) {
-            boards[i].print();
+            if (i != 0 && i%gameColSize == 0) {
+                System.out.println();
+            }
+            boards[i].print(i);
+            System.out.println();
         }
         for (int i = 0; i < boards.length; i++) {
             if (boards[i].gameOver()) {

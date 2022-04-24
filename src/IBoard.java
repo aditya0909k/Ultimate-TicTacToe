@@ -9,7 +9,7 @@
 */
 
 public interface IBoard {
-    void print();
+    void print(int boardNum);
     String getMark(int row, int col);
     boolean makeMove(String player, int square);
     void setSize(int row, int col);

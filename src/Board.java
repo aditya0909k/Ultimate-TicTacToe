@@ -24,7 +24,9 @@ public class Board implements IBoard{
     public Board(int rowSize, int colSize, String name) {
         this.setName(name);
         this.setSize(rowSize, colSize);
-
+        for (int i = 0; i < boxes.length; i++) {
+            boxes[i].setPlaceHolder(String.valueOf(i));
+        }
     }
     @Override
     public int getRowSize() {
@@ -68,13 +70,33 @@ public class Board implements IBoard{
         }
         print();
     }
-    @Override
     public void print() {
-        System.out.println("Printing the " + this.name + "-" + this.rowSize + "*" + this.colSize + " board info...");
+        //System.out.println("Printing the " + this.name + "-" + this.rowSize + "*" + this.colSize + " board info...");
         for (int i = 0; i < boxes.length; i++) {
-            if (i != 0 && i%colSize == 0) 
+            if (i != 0 && i%colSize == 0) { 
                 System.out.println();
+                System.out.print(" | "); 
+            }
+            if (i == 0) {
+                System.out.print(" | ");;
+            }
             boxes[i].print();
+            System.out.print( "| ");
+        }
+        System.out.println("");
+    }
+    @Override
+    public void print(int boardNum) {
+        for (int i = 0; i < boxes.length; i++) {
+            if (i != 0 && i%colSize == 0) { 
+                System.out.println();
+                System.out.print("BOARD#" + boardNum + " | "); 
+            }
+            if (i == 0) {
+                System.out.print("BOARD#" + boardNum + " | ");;
+            }
+            boxes[i].print();
+            System.out.print("| ");
         }
         System.out.println("");
     }
