@@ -20,4 +20,7 @@ public interface IBoard {
     String getWinner();
     void setWinner(String winner);
     boolean gameOver();
+    void setBoardNumber(int num);
+    int getBoardNumber();
+    boolean isBoxAvailable(int box);
 }

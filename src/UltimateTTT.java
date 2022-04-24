@@ -36,6 +36,7 @@ public class UltimateTTT {
         boards = new Board[gameRowSize*gameColSize];
         for (int i = 0; i < boards.length; i++) {
             this.boards[i] = new Board(gameRowSize, gameColSize, "TTTGame");
+            boards[i].setBoardNumber(i);
         }
     }
     //need to fix constructor to where original setBoard isn't called if setBoard(board) is used...
@@ -43,6 +44,7 @@ public class UltimateTTT {
         boards = new IBoard[gameRowSize*gameColSize];
         for (int i = 0; i < boards.length; i++) {
             this.boards[i] = board;
+            boards[i].setBoardNumber(i);
         }
     }
 
@@ -54,12 +56,39 @@ public class UltimateTTT {
     public void start() {
         System.out.println("==== WELCOME TO THE ULTIMATE TIC-TAC-TOE GAME!! ====");
         print();
+        boolean start = true;
+        int board;
+        int square;
+        int squareActingAsNextBoard = -1;
         do {
             switchPlayer();
             System.out.println("Current Player is: " + players[currentIndex].getMark());
-            int board = players[this.currentIndex].selectBoard(gameRowSize*gameColSize);
-            int square = players[this.currentIndex].selectBoardValue(gameColSize*gameColSize);
-            boards[board].makeMove(players[this.currentIndex].getMark(), square);
+            if (start) {
+                board = players[currentIndex].selectBoard(gameRowSize*gameRowSize);
+                squareActingAsNextBoard = players[currentIndex].selectBoardValue(gameColSize*gameColSize);
+                boards[board].makeMove(players[currentIndex].getMark(), squareActingAsNextBoard);
+                start = false;
+                print();
+                continue;
+            }
+            System.out.println("Selected board: " + squareActingAsNextBoard);
+            square = players[currentIndex].selectBoardValue(gameColSize*gameColSize);
+            while (!boards[squareActingAsNextBoard].isBoxAvailable(square)) {
+                System.out.println("That square is already taken!");
+                square = players[currentIndex].selectBoardValue(gameColSize*gameColSize);
+            }
+            if (boards[squareActingAsNextBoard].isFull()) {
+                System.out.println("Lucky you! The board that player " + players[currentIndex].getMark() + " tried to send you to is full! You get to pick any board you would like.");
+                board = players[currentIndex].selectBoard(gameRowSize*gameRowSize);
+                squareActingAsNextBoard = players[currentIndex].selectBoardValue(gameColSize*gameColSize);
+                boards[board].makeMove(players[currentIndex].getMark(), squareActingAsNextBoard);
+                print();
+                continue;
+            }
+            else {
+                boards[squareActingAsNextBoard].makeMove(players[currentIndex].getMark(), square);
+                squareActingAsNextBoard = square;
+            }
             print();
         } while(!gameOver());
     }
@@ -71,10 +100,16 @@ public class UltimateTTT {
 
     public boolean gameOver() { //Check if there is a winner of the game
         if (isWinnerOfUltimateBoard()) {
-            if (ultimateWinner.equals("Tie")) 
+            if (ultimateWinner.equals("Tie")) {
+                print();
+                System.out.println();
                 System.out.println("Game ended in a tie!");
-            else
+            }
+            else {
+                print();
+                System.out.println();
                 System.out.println("Game over! " + players[currentIndex].getMark() + " wins!"); //print out Game over, and winner
+            }
             return true;
         }
         return false;
@@ -98,6 +133,11 @@ public class UltimateTTT {
     public void print() {         
         for (int i = 0; i < boards.length; i++) {
             boards[i].print();
+        }
+        for (int i = 0; i < boards.length; i++) {
+            if (boards[i].gameOver()) {
+                System.out.println("Board #" + i + " winner is " + boards[i].getWinner());
+            }
         }
     }
     //
@@ -174,8 +214,8 @@ public class UltimateTTT {
         int currentCol = -1;
         for (int i = 0; i < gameColSize-1; i++) {
             currentCol = i * gameRowSize + col; 
-            if ((isWinnerOfBoard(boards[currentCol]) && isWinnerOfBoard(boards[currentCol+1]))) {
-                if (boards[currentCol].getWinner().equals(boards[currentCol+1].getWinner()))
+            if ((isWinnerOfBoard(boards[currentCol]) && isWinnerOfBoard(boards[currentCol+gameColSize]))) {
+                if (boards[currentCol].getWinner().equals(boards[currentCol+gameColSize].getWinner()))
                     counter++;
             }
         }

@@ -61,4 +61,16 @@ public class OtherBoardWrapper implements IBoard{
     public boolean gameOver() {
         return otherboard.gameOver();
     }
+    @Override
+    public void setBoardNumber(int num) {
+        otherboard.setBoardNumber(num);
+    }
+    @Override
+    public int getBoardNumber() {
+        return otherboard.getBoardNumber();
+    }
+    @Override
+    public boolean isBoxAvailable(int box) {
+        return otherboard.isBoxAvailable(box);
+    }
 }

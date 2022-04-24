@@ -15,6 +15,7 @@ public class OtherBoard{
 	private String name;
 	private String winner;
 	private boolean gameOver = false;
+	private int boardNumber;
 
 	OtherBoard(){
 		this(3, 3, "TTT 2D array of char");
@@ -103,5 +104,15 @@ public class OtherBoard{
 	}
 	public boolean gameOver() {
 		return gameOver;
+	}
+	public void setBoardNumber(int num) {
+		this.boardNumber = num;
+	}
+	public int getBoardNumber() {
+		return boardNumber;
+	}
+	public boolean isBoxAvailable(int box) {
+//implement (same formula as setmark)
+return false;
 	}
 }

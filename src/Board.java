@@ -26,18 +26,22 @@ public class Board implements IBoard{
         this.setSize(rowSize, colSize);
 
     }
+    @Override
     public int getRowSize() {
         return this.rowSize;
     }
+    @Override
     public int getColSize() {
         return this.colSize;
     }
+    @Override
     public String getName() {
         return this.name;
     }
     public void setName(String name) {
         this.name = name;
     }
+    @Override
     public void setSize(int rowSize, int colSize) {
         if (rowSize < 3 || colSize < 3) {
             System.out.println("Miniumum board size is 3x3.");
@@ -48,9 +52,11 @@ public class Board implements IBoard{
             init();
         }
     }
-    public void setBoardNumber(int boardNumber) {
-        this.boardNumber = boardNumber;
+    @Override
+    public void setBoardNumber(int num) {
+        this.boardNumber = num;
     }
+    @Override
     public int getBoardNumber() {
         return boardNumber;
     }
@@ -62,10 +68,7 @@ public class Board implements IBoard{
         }
         print();
     }
-    public void reset() {
-        
-    }
-
+    @Override
     public void print() {
         System.out.println("Printing the " + this.name + "-" + this.rowSize + "*" + this.colSize + " board info...");
         for (int i = 0; i < boxes.length; i++) {
@@ -75,7 +78,8 @@ public class Board implements IBoard{
         }
         System.out.println("");
     }
-    public boolean makeMove(String mark, int square) { 
+    @Override
+    public boolean makeMove(String mark, int square) {
         if (gameOver())
             return false;
         int index = square; 
@@ -83,6 +87,7 @@ public class Board implements IBoard{
                 return true;
         return false; 
     }
+    @Override
     public boolean isFull() {
         for (Box b : boxes) {
             if (b.isAvailable())
@@ -90,16 +95,23 @@ public class Board implements IBoard{
         }
         return true;
     }
+    public boolean isBoxAvailable(int box) {
+        return boxes[box].isAvailable();
+    }
+    @Override
     public String getMark(int row, int col) {
         return boxes[row * this.rowSize + col].getPlaceHolder();
     }
+    @Override
     public void setWinner(String winner) {
         this.winner = winner;
         this.gameOver = true;
     }
+    @Override
     public String getWinner() {
         return winner;
     }
+    @Override
     public boolean gameOver() {
         return gameOver;
     }
