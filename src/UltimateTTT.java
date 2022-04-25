@@ -110,7 +110,7 @@ public class UltimateTTT {
             System.out.println("Current Player is: " + players[currentIndex].getMark()); //state current player
             if (start) { //if its the start of game
                 board = players[currentIndex].selectBoard(gameRowSize*gameRowSize); //let player choose board
-                squareActingAsNextBoard = players[currentIndex].selectBoardValue(gameColSize*gameColSize); //let player choose square that will act as next board
+                squareActingAsNextBoard = players[currentIndex].selectSquare(gameColSize*gameColSize); //let player choose square that will act as next board
                 boards[board].makeMove(players[currentIndex].getMark(), squareActingAsNextBoard); //make the move
                 start = false; //set start to false
                 continue; //continue to repeat loop
@@ -126,17 +126,17 @@ public class UltimateTTT {
                     System.out.println("---------------------------");
                     board = players[currentIndex].selectBoard(gameRowSize*gameColSize); //let player choose board
                 }
-                squareActingAsNextBoard = players[currentIndex].selectBoardValue(gameColSize*gameColSize); //let player choose square that will act as next board
+                squareActingAsNextBoard = players[currentIndex].selectSquare(gameColSize*gameColSize); //let player choose square that will act as next board
                 boards[board].makeMove(players[currentIndex].getMark(), squareActingAsNextBoard); //make the move
                 continue; //continue to repeat loop
             }
             System.out.println("Selected board: " + squareActingAsNextBoard); //state the board that you will be playing on
-            square = players[currentIndex].selectBoardValue(gameColSize*gameColSize); //let player choose square
+            square = players[currentIndex].selectSquare(gameColSize*gameColSize); //let player choose square
             while (!boards[squareActingAsNextBoard].isBoxAvailable(square)) { //make sure this square isnt already taken
                 System.out.println("-----------------------------");
                 System.out.println("That square is already taken!");
                 System.out.println("-----------------------------");
-                square = players[currentIndex].selectBoardValue(gameColSize*gameColSize); //let player choose square
+                square = players[currentIndex].selectSquare(gameColSize*gameColSize); //let player choose square
             }
             boards[squareActingAsNextBoard].makeMove(players[currentIndex].getMark(), square); //make the move
             squareActingAsNextBoard = square; //square that will act as next board is set to the player choose square

@@ -25,7 +25,7 @@ public class ComputerPlayer extends APlayer{ //computerplayer extends aplayer cl
         return board;
     }
     @Override
-    public int selectBoardValue(int range) { //select our square value
+    public int selectSquare(int range) { //select our square value
         int square = randomNumber(range);
         System.out.println("Computer selected square: " + square);
         return square;

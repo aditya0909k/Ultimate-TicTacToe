@@ -123,14 +123,14 @@ public class Board implements IBoard{ //Board class implements the IBoard interf
         System.out.println("");
     }
     //board specific methods
-    public void init() { //initialize the board
+    private void init() { //initialize the board
         boxes = new Box[rowSize*colSize]; //array of boxes
         for (int i = 0; i < boxes.length; i++) {
             Box b = new Box(i/colSize, i%colSize); //make a new box and set it's row and col value
             boxes[i] = b;
         }
     }
-    public void changeBoxes() { //change all DASH placeholder to * to indicate a won board
+    private void changeBoxes() { //change all DASH placeholder to * to indicate a won board
         if (gameOver()) { //make sure game is over
             for (int i = 0; i < boxes.length; i++) {
                 if (boxes[i].isAvailableDash()) { //if its available and a DASH

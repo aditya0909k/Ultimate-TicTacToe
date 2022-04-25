@@ -31,5 +31,5 @@ public abstract class APlayer { //Abstract class for the UltimateTTT game to use
         this.mark = mark;
     }
     public abstract int selectBoard(int range); //abstract class specific to each instance of a class that extends APlayer. this will select the board a player wants to play on
-    public abstract int selectBoardValue(int range); //abstract class specific to each instance of a class that extends APlayer. this will select the square a player wants to play on
+    public abstract int selectSquare(int range); //abstract class specific to each instance of a class that extends APlayer. this will select the square a player wants to play on
 }

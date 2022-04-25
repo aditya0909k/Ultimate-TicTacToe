@@ -27,7 +27,6 @@ public class Box { //box is the basis of every board. consists of a row and col 
     public String getPlaceHolder() { //return placeholder
         return this.placeHolder;
     }
-
     public boolean setPlaceHolder(String placeHolder) { //set placeholder if it is a dash or "*". else, dont.
         if (isAvailable()) {
             this.placeHolder = placeHolder;

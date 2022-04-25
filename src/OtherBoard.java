@@ -58,9 +58,6 @@ public class OtherBoard{
 	public boolean gameOver() { //is game over?
 		return gameOver;
 	}
-	private void setName(String name) { //set name
-		this.name = name;
-	}
 	public void setWinner(String winner) { //set winner, and also set gameover as true, and change boxes
 		this.winner = winner;
 		this.gameOver = true;
@@ -110,6 +107,9 @@ public class OtherBoard{
 		}
 	}
 	//all board specific methods
+	public void setName(String name) { //set name
+		this.name = name;
+	}
 	private void init() { //initialize our board
 		this.board = new char[boardRowSize][boardColSize]; //create a 2d array XxX size
 		for(int i = 0 ; i < board.length; i++){
@@ -118,14 +118,14 @@ public class OtherBoard{
 			}
 		}
 	}
-	public boolean isBoxAvailable(int row, int col) { //is the box available?
+	private boolean isBoxAvailable(int row, int col) { //is the box available?
 		if(board[row][col] == Mark.DASH.getMark().charAt(0)) //if its a dash
 			return true;
 		if (board[row][col] == '*') //or a star
 			return true; //return true
 		return false;
 	}
-	public void changeBoxes() { //change our boxes
+	private void changeBoxes() { //change our boxes
 		if (gameOver()) { //make sure game is over
 			for (int row = 0; row < getRowSize(); row++) {
 				for (int col = 0; col < getColSize(); col++) {

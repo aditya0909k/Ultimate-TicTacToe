@@ -38,7 +38,7 @@ public class HumanPlayer extends APlayer{ //HumanPlayer extends the APlayer clas
         return boardNum;
     }
     @Override
-    public int selectBoardValue(int range) { //select our square value
+    public int selectSquare(int range) { //select our square value
         range--; //decrement our range to account for indexing purposes
         System.out.println("Please select a valid square on the selected board: ");
         int boardSquare = -1; //initialize our boardsquare
