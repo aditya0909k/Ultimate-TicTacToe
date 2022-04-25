@@ -67,7 +67,6 @@ public class UltimateTTT {
     private int gameColSize = 3;
     private APlayer[] players = new APlayer[2]; //our game players
     private String[] marks = {"X", "O"};
-    private String name = "Ultimate TTTGame";
     private String ultimateWinner = "";
     private int currentIndex = -1;
 
@@ -92,9 +91,9 @@ public class UltimateTTT {
             this.boards[i].setBoardNumber(i); //set the board number
         }
     }
-    public void setBoard(IBoard[] board) { //set our board if we are given a differnt type of board
+    public void setBoard(IBoard[] boards) { //set our board if we are given a differnt type of board
         for (int i = 0; i < boards.length; i++) {
-            this.boards[i] = board[i]; //for each board in UltimateTTT boards, set it as other type of board
+            this.boards[i] = boards[i]; //for each board in UltimateTTT boards, set it as other type of board
             this.boards[i].setBoardNumber(i); //set the board number
         }
     }
@@ -274,7 +273,7 @@ public class UltimateTTT {
     //LR checking
     public boolean checkBoardDiagLR() { //check top left to bottom right diagonal for 3 boards in a row won
         int counter = 0; //start at counter 0
-        for (int currentSquare = 0; currentSquare < (gameRowSize*gameColSize); currentSquare+=gameRowSize+1) { //start at 0, make sure currentsquare is less than rowsize*colsize because the last square will be rowsize*colsize, add rowsize+1 each time to get the next diagonal spot
+        for (int currentSquare = 0; currentSquare < (gameRowSize*gameColSize)-1; currentSquare+=gameRowSize+1) { //start at 0, make sure currentsquare is less than rowsize*colsize-1 because the last square will be rowsize*colsize, add rowsize+1 each time to get the next diagonal spot
             if ((isWinnerOfBoard(boards[currentSquare]) && isWinnerOfBoard(boards[currentSquare+gameRowSize+1]))) { //if there is a winner of currentsquare and its diagonal
                 if (!boards[currentSquare].getWinner().equals("Tie") && boards[currentSquare].getWinner().equals(boards[currentSquare+gameRowSize+1].getWinner())) //make sure winner isnt Tie and also make sure they are both the same winner
                     counter++; //increment counter
