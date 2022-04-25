@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch UltimateTTTRunner",
+            "request": "launch",
+            "mainClass": "UltimateTTTRunner",
+            "projectName": "TTTLastPhasetest_f984e599"
+        },
+        {
+            "type": "java",
             "name": "Launch DriverMain",
             "request": "launch",
             "mainClass": "DriverMain",

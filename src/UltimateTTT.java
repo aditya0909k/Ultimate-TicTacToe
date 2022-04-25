@@ -13,7 +13,52 @@ own board. Also, you can still be sent to a board that has already been won, but
 */
 
 /* Problem solution
+To start with, the basis of our UltimateTTT game will be an array of IBoards, and an array of APlayers. We will also need variables
+to set our gameRowSize, and our gameColSize. We will need a variable to store the ultimateWinner, and the currentIndex of which
+player is currently getting to play a move. 
 
+First, our constructor: It will call setPlayers() and setBoard(), which will set our players to default as computers, or
+humans if we pass in an APlayer, and will set our board to Board type by default, or any other type of IBoard if we pass
+in an array of IBoards (in testing cases, OtherBoardWrapper()). 
+
+Our setPlayers will be our method to set the APlayers in our game to computers, and the overloaded setPlayers method with parameters
+will set the APlayers in our game to humans or any other type of player.
+
+In our setBoard, by default we will create an IBoard array of rowsize*colsize, and loop through the boards array, setting each
+board as a new Board type. In the overloaded method with parameters, we will set each board as a new IBoard type. Regardless of 
+which method is ultimately used, we will also set the board number of each to its board number.
+
+Our start function is where the game actually happens. To start off with, we will need a few variables to keep track of what is 
+happening in the game. We will need "start", to see if the game just started, board, which is the user input board, square, which
+is the user input square, and squareActingAsNextBoard, which is the square that the user inputted, which now acts as the next
+board. We will also have prevPlayer to store so that when we state that the board is full, we can state which player just caused
+the board to be full. Then, we will do a loop while the game isn't over. In this loop, we will first print out our current board, and then switchPlayer().
+We will then check if it is a starting game where start == true, and if so, allow the user to select the board and square. We then
+set start to false and use continue to repeat the loop. Next, we would want to check if the square that the last player played, which
+is now the new board, is full. If so, we will tell the user that the board is full, and allow them to select a new board and square.
+We will use a while loop to allow the user to continue picking a board until it is valid. Once the board is valid, We will ask them to
+pick which square they want, and then use continue to repeat the loop. If neither of these conditions are satisfied, we will simply just
+ask the user to pick a square on the already selected board, which is squareActingAsNextBoard. We will use a while loop to 
+allow the user to continue picking a square until it is valid. Once the square is valid, we will makeMove on that square, and
+set squareActingAsNewBoard to that square the user picked, to follow the rules of the game. We will also update prevPlayer.
+
+In the gameOver function, we are checking for the method isWinnerOfUltimateBoard, and once it is returned as true, gameOver will
+be returned as true, and our game will stop. In this method, we will also print who the winner of the game is, or if it is a tie.
+
+In switchPlayer, we will switch the index based on the current index to change who is playing.
+
+The print method will print out our boards and their rows and columns in the format that is required.
+
+Our isFull will return if the UltimateTTT board is completely full, and will call the overloaded method isFull, and pass in the
+Iboards array boards. The isFull(Iboard[] boards) will go through each board and call the isFull() method of that board. If any of
+them are false, we know that the Ultimate Board is not full.
+
+Now, we are at our logic part of the tic tac toe. First, we will check for the Ultimate Board Winner. This will check the
+ultimate board's rows, columns, and diagonals. In these methods, we will call the isWinnerOfBoard method, passing in the board
+that we are checking if it is won. In the isWinnerOfBoard method, we take in a parameter IBoard, and check this board's rows, 
+columns, and diagonals. If any are satisfied, and when it is we change the board's gameOver to true and set its winner, we would
+return this truthy value back to isWinnerOfBoard, which will return the truthy value to Ultimate Board's check row, check col,
+or check diagonal. This will be how the game decides if there is a winner of the Ultimate TTTGame.
 */
 
 public class UltimateTTT {
