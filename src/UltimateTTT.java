@@ -143,7 +143,7 @@ public class UltimateTTT {
             prevPlayer = players[currentIndex]; //set prevplayer to our current player, so that next iteration it will be prevplayer
         } while(!gameOver()); //continue this loop while the game is not over
     }
-    public boolean gameOver() { //Check if there is a winner of the game
+    private boolean gameOver() { //Check if there is a winner of the game
         if (isWinnerOfUltimateBoard()) { //if there is an ultiamte winner
             print(); //print the final board
             if (ultimateWinner.equals("Tie")) { //if it is a tie
@@ -158,7 +158,7 @@ public class UltimateTTT {
         }
         return false;
     }
-    public void switchPlayer() { //Modify currentIndex to change the player who is playing. 
+    private void switchPlayer() { //Modify currentIndex to change the player who is playing. 
         if (currentIndex == -1) //since starting at -1, increase to zero to start game with player 1 playing.
             currentIndex++;
         else if (currentIndex == 0) { //if it is player one's turn done, change to player 2
@@ -191,7 +191,7 @@ public class UltimateTTT {
     //
     //
 
-    public boolean isFull() { //is our board full?
+    private boolean isFull() { //is our board full?
         return isFull(boards); //call helper method on boards array
     }
     private boolean isFull(IBoard[] boards) { //check if all boards in IBoard array are full
@@ -201,7 +201,7 @@ public class UltimateTTT {
         }
         return true;
     }
-    public boolean isWinnerOfUltimateBoard() { //check if there is a winner of ultimate board
+    private boolean isWinnerOfUltimateBoard() { //check if there is a winner of ultimate board
         if (checkBoardRows()) { //check board's rows
             return true;
         }
@@ -221,7 +221,7 @@ public class UltimateTTT {
         return false;
     }
     //row checking
-    public boolean checkBoardRows() { //check all rows for 3 boards in a row won
+    private boolean checkBoardRows() { //check all rows for 3 boards in a row won
         for (int i = 0; i < gameRowSize; i++) { //for each row
             if (checkBoardRow(i)) { //check that row
                 return true;
@@ -229,7 +229,7 @@ public class UltimateTTT {
         }
         return false;
     }
-    public boolean checkBoardRow(int row) { //check an individual row for 3 boards in a row
+    private boolean checkBoardRow(int row) { //check an individual row for 3 boards in a row
         int counter = 0; //start at 0 counter
         int currentSquare = -1;
         for (int i = 0; i < gameRowSize-1; i++) {
@@ -246,7 +246,7 @@ public class UltimateTTT {
         return false;
     }
     //column checking
-    public boolean checkBoardCols() { //check all cols for 3 boards in a row won
+    private boolean checkBoardCols() { //check all cols for 3 boards in a row won
         for (int i = 0; i < gameColSize; i++) { //for each col
             if (checkBoardCol(i)) { //check that col
                 return true;
@@ -254,7 +254,7 @@ public class UltimateTTT {
         }
         return false;
     }
-    public boolean checkBoardCol(int col) { //check an individual row for 3 boards in a row
+    private boolean checkBoardCol(int col) { //check an individual row for 3 boards in a row
         int counter = 0; //start at 0 counter
         int currentSquare = -1;
         for (int i = 0; i < gameColSize-1; i++) {
@@ -271,7 +271,7 @@ public class UltimateTTT {
         return false;
     }
     //LR checking
-    public boolean checkBoardDiagLR() { //check top left to bottom right diagonal for 3 boards in a row won
+    private boolean checkBoardDiagLR() { //check top left to bottom right diagonal for 3 boards in a row won
         int counter = 0; //start at counter 0
         for (int currentSquare = 0; currentSquare < (gameRowSize*gameColSize)-1; currentSquare+=gameRowSize+1) { //start at 0, make sure currentsquare is less than rowsize*colsize-1 because the last square will be rowsize*colsize, add rowsize+1 each time to get the next diagonal spot
             if ((isWinnerOfBoard(boards[currentSquare]) && isWinnerOfBoard(boards[currentSquare+gameRowSize+1]))) { //if there is a winner of currentsquare and its diagonal
@@ -286,7 +286,7 @@ public class UltimateTTT {
         return false;
     }
     //RL checking
-    public boolean checkBoardDiagRL() { //check top right to bottom left diagonal for 3 boards in a row won
+    private boolean checkBoardDiagRL() { //check top right to bottom left diagonal for 3 boards in a row won
         int counter = 0;
         for (int i = gameRowSize-1; i < (gameRowSize*gameColSize)-2; i+=gameRowSize-1) {  //start at rowsize-1 which is the top right square, go until rowsize*colsize-2 because that is the bottom left square, add rowsize-1 each time to get the next diagonal square
             if ((isWinnerOfBoard(boards[i]) && isWinnerOfBoard(boards[i+gameRowSize-1]))) {  //if there is a winner of currentsquare and its diagonal
@@ -300,7 +300,7 @@ public class UltimateTTT {
         }
         return false;
     }
-    public boolean isWinnerOfBoard(IBoard board) { //Pass in the passed in board to each check method. Invokes logical methods to check for a winner in any row, column, or diagonal. If none of these are true and the board is filled, this confirms that the game is tied.
+    private boolean isWinnerOfBoard(IBoard board) { //Pass in the passed in board to each check method. Invokes logical methods to check for a winner in any row, column, or diagonal. If none of these are true and the board is filled, this confirms that the game is tied.
             if (checkRows(board)) { //check through all rows for a winner 
                 return true;
             }
@@ -320,14 +320,14 @@ public class UltimateTTT {
             return false;
     }
     //single board row checking
-    public boolean checkRows(IBoard board) {  //check each row for a winner based on the board
+    private boolean checkRows(IBoard board) {  //check each row for a winner based on the board
         for (int i = 0; i < gameRowSize; i++)  { //go through each row
             if (checkRow(board, i))
                 return true;
         }
         return false;
     }
-    public boolean checkRow(IBoard board, int row) { //Go through each row of the array and check to see if (rowSize) in a row are the same player mark.
+    private boolean checkRow(IBoard board, int row) { //Go through each row of the array and check to see if (rowSize) in a row are the same player mark.
         int counter = 0; 
             for (int col = 0; col < gameColSize; col++) { //start at 0, go through each column of the board
                 if (board.getMark(row, col).equals(players[currentIndex].getMark())) { //if the mark is not "-" and it equals the mark directly next to it
@@ -343,14 +343,14 @@ public class UltimateTTT {
         return false;
     }
     //single board col checking
-    public boolean checkCols(IBoard board) { //check each column for a winner based on the board
+    private boolean checkCols(IBoard board) { //check each column for a winner based on the board
         for (int i = 0; i < gameColSize; i++) { //go through each column
             if (checkCol(board, i))
                 return true;
         }
         return false;
     }
-    public boolean checkCol(IBoard board, int col) { //Go through each column of the array and check to see if (colSize) in a row are the same player mark
+    private boolean checkCol(IBoard board, int col) { //Go through each column of the array and check to see if (colSize) in a row are the same player mark
         int counter = 0;
         for (int row = 0; row < gameRowSize; row++) { //start at 0, go through all columns, increase by one each time
             if (board.getMark(row, col).equals(players[currentIndex].getMark())) { //if the mark is not "-" and it equals the mark directly below it
@@ -366,7 +366,7 @@ public class UltimateTTT {
         return false;
     }
     //single board LR checking
-    public boolean checkDiagLR(IBoard board) { //Go through the diagonal of the array from top left to bottom right and see if they are the same player mark
+    private boolean checkDiagLR(IBoard board) { //Go through the diagonal of the array from top left to bottom right and see if they are the same player mark
         int counter = 0;
         int row = 0;
         int col = 0;
@@ -387,7 +387,7 @@ public class UltimateTTT {
         return false;
     }
     //single board RL checking
-    public boolean checkDiagRL(IBoard board) { //Go through the diagonal of the array from bottom left to top right and see if they are the same player mark
+    private boolean checkDiagRL(IBoard board) { //Go through the diagonal of the array from bottom left to top right and see if they are the same player mark
         int counter = 0;
         int row = 0;
         int col = gameColSize-1;

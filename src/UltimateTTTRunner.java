@@ -20,11 +20,11 @@ We will create an instance of TTTGame and start it. Optionally, we can create an
 public class UltimateTTTRunner { //main runner
     public static void main(String[] args) { //main runner
         UltimateTTT TTTGame = new UltimateTTT(); //create instance
-        IBoard[] boards = new IBoard[9];
-        for (int i = 0; i < boards.length; i++) {
-            boards[i] = new OtherBoardWrapper();
-        }
-        TTTGame.setBoard(boards);
+        // IBoard[] boards = new IBoard[9];
+        // for (int i = 0; i < boards.length; i++) {
+        //     boards[i] = new OtherBoardWrapper();
+        // }
+        // TTTGame.setBoard(boards);
         //TTTGame.setPlayers(new HumanPlayer("Player1", "X"), new HumanPlayer("Player2", "O"));
         TTTGame.start(); //start
     }
