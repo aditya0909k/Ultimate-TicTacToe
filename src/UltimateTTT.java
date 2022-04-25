@@ -122,9 +122,9 @@ public class UltimateTTT {
                 System.out.println("-----------------------------------------------------------------------------------------------");
                 board = players[currentIndex].selectBoard(gameRowSize*gameRowSize); //let player choose board
                 while (boards[board].isFull()) { //make sure it isnt a full board
-                    System.out.println("--------------------------------");
-                    System.out.println("No!! That board is already full!");
-                    System.out.println("--------------------------------");
+                    System.out.println("---------------------------");
+                    System.out.println("That board is already full!");
+                    System.out.println("---------------------------");
                     board = players[currentIndex].selectBoard(gameRowSize*gameColSize); //let player choose board
                 }
                 squareActingAsNextBoard = players[currentIndex].selectBoardValue(gameColSize*gameColSize); //let player choose square that will act as next board
