@@ -6,7 +6,8 @@ Iboard board.
 */
 
 /* Problem solution
-Simply just wraps otherboard methods as IBoard methods.
+Simply just wraps otherboard methods as IBoard methods. Constructor allows for the possibility of either having a default, or
+setting whatever amount of row/cols you want and the Otherboard's name.
 */
 
 public class OtherBoardWrapper implements IBoard{

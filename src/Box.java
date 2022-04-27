@@ -35,7 +35,7 @@ public class Box { //box is the basis of every board. consists of a row and col 
         return false;
     }
     public boolean isAvailable() { //is the box available
-        if ((!this.placeHolder.equals("O") && !this.placeHolder.equals("X")) || (this.placeHolder.equals("*")))
+        if ((!this.placeHolder.equals("O") && !this.placeHolder.equals("X")) || (this.placeHolder.equals("*"))) //if its not a O or X, or it is a star
             return true;
         return false;
     }

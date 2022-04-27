@@ -17,7 +17,8 @@ index. We will also need a method to initialize our board, which is called by ou
 all the boxes, giving it a row and column number based on the Board's row and column sizes.  We will also add a isBoxAvailable method
 to see if a passed in box number is available in the board, and finally a changeBoxes method, for when the game is over, we can 
 change all the remaining DASHES in a board to "*", to signify that our board is already won and the game winner can no longer be 
-changed. 
+changed. Our init method will make sure to initialize the board with the correct amount of boxes needed. multiplying rowSize and
+colSize. We will make sure to set these boxes to a numerical value to represent each square.
 */
 
 public class Board implements IBoard{ //Board class implements the IBoard interface 

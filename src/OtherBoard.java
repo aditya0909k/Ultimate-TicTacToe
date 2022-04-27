@@ -10,11 +10,12 @@ etc...
 This otherboard will be a 2 dimensional char array. The constructor will either default to a 3x3 array or based on user input.
 It will have all the standard variables like the row size, col size, board's name, its winner, if the game is over, its boardNumber,
 and all the set/get methods required for each of these variables. Additionally, it will have setMark, which is where a move on the
-board is made. It will also need to be initialized, where the init() function will set all the char's to DASH. I will also have
+board is made. It will also need to be initialized, where the init() function will set all the char's to a numerical value. I will also have
 an isFull method to see if the board is full, and this will be using the board's isBoxAvailable. I will have 2 isBoxAvailable. One
 will be public and accept square for IBoard, one will be private and accept row/col for dealing inside the otherboard only. 
 I will have changeBoxes method to change DASH to * if a board has a winner, and finally a print method to just print out the board
-as normal.
+as normal. Our printBoard method will take in an index value from the UltimateTTT game, and based off of it, print out only the row 
+of the board starting with that index.
 */
 
 public class OtherBoard{

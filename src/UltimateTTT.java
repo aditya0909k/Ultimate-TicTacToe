@@ -47,7 +47,8 @@ be returned as true, and our game will stop. In this method, we will also print 
 
 In switchPlayer, we will switch the index based on the current index to change who is playing.
 
-The print method will print out our boards and their rows and columns in the format that is required.
+The print method will print out our boards and their rows and columns in the format that is required It will loop through each to get
+the board number, and then call that boardNumber's printBoard method on the boardRow passed in through a loop.
 
 Our isFull will return if the UltimateTTT board is completely full, and will call the overloaded method isFull, and pass in the
 Iboards array boards. The isFull(Iboard[] boards) will go through each board and call the isFull() method of that board. If any of
@@ -98,7 +99,7 @@ public class UltimateTTT {
         }
     }
     public void start() {
-        System.out.println("==== WELCOME TO THE ULTIMATE TIC-TAC-TOE GAME!! ==== \n");
+        System.out.print("==== WELCOME TO THE ULTIMATE TIC-TAC-TOE GAME!! ==== \n");
         boolean start = true; //variable that indicates if we have just started the game
         int board; //our user input board
         int square; //our user input square
@@ -168,26 +169,25 @@ public class UltimateTTT {
             currentIndex--;
         }
     }
-    public void print() {         
-        int boardNumber = 0;
-        for (int ultimateRow = 0; ultimateRow < gameRowSize; ultimateRow++) {
-            boardNumber = ultimateRow * gameColSize;
-            for (int boardRow = 0; boardRow < gameColSize; boardRow++) {
-                System.out.print("BOARD#" + boardNumber + " | ");
-                boards[boardNumber].printBoard(boardRow);
+    public void print() { //print the board in the formatted way
+        int boardNumber = 0; //current board number
+        for (int ultimateRow = 0; ultimateRow < gameRowSize; ultimateRow++) { //the row of the ultiamte board
+            boardNumber = ultimateRow * gameColSize; //set boardnumber to each first column of each row
+            for (int boardRow = 0; boardRow < gameColSize; boardRow++) { //the board row that we want to print
+                System.out.print("\tBOARD#" + boardNumber + " | ");
+                boards[boardNumber].printBoard(boardRow); //print the row of the board
 
                 System.out.print("\tBOARD#" + (boardNumber + 1) + " | ");
-                boards[boardNumber + 1].printBoard(boardRow);
+                boards[boardNumber + 1].printBoard(boardRow); //print the row of the board+1
 
                 System.out.print("\tBOARD#" + (boardNumber + 2) + " | ");
-                boards[boardNumber + 2].printBoard(boardRow);
-
-                System.out.println();
+                boards[boardNumber + 2].printBoard(boardRow); //print the row of the board+2
+                System.out.println(); 
             }
         }
-        for (int i = 0; i < boards.length; i++) {
-            if (boards[i].gameOver()) {
-                System.out.println("Board #" + i + " winner is " + boards[i].getWinner());
+        for (int i = 0; i < boards.length; i++) { //loop thorugh boards
+            if (boards[i].gameOver()) { //if there is a winner
+                System.out.println("Board #" + i + " winner is " + boards[i].getWinner()); //print who won that board
             }
         }
         System.out.println();
