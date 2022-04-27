@@ -11,11 +11,13 @@ First, we will have an array of Boxes from the Box class acting as our complete 
 it will default be a 3x3 but can be set differently if needed. We will need get and set methods for all our private
 variables, and also. We will also need the makeMove method, which will check if a box at the specific square is available,
 and if so, set the placeholder to that. Then we have our print and isFull methods, which will print the board and
-check if the board is full by going through all boxes and seeing if any are available. We will also need a method to initialize 
-our board, which is called by our setSize from the constructor, and will initialize all the boxes, giving it a row and column
-number based on the Board's row and column sizes.  We will also add a isBoxAvailable method to see if a passed in box number
-is available in the board, and finally a changeBoxes method, for when the game is over, we can change all the remaining DASHES in a
-board to "*", to signify that our board is already won and the game winner can no longer be changed.
+check if the board is full by going through all boxes and seeing if any are available. Our printBoard method will take in an index
+value from the UltimateTTT game, and based off of it, print out only the row of the board starting with that
+index. We will also need a method to initialize our board, which is called by our setSize from the constructor, and will initialize 
+all the boxes, giving it a row and column number based on the Board's row and column sizes.  We will also add a isBoxAvailable method
+to see if a passed in box number is available in the board, and finally a changeBoxes method, for when the game is over, we can 
+change all the remaining DASHES in a board to "*", to signify that our board is already won and the game winner can no longer be 
+changed. 
 */
 
 public class Board implements IBoard{ //Board class implements the IBoard interface 
@@ -122,18 +124,26 @@ public class Board implements IBoard{ //Board class implements the IBoard interf
         }
         System.out.println("");
     }
+    @Override
+    public void printBoard(int index) { //print the board based on index
+        for (int j = index*colSize; j < ((index*colSize)+colSize); j++) { //loop that starts at the box number corresponding to the row, and goes until that row is done
+            boxes[j].print(); //print the box
+            System.out.print( "| ");
+        }
+    }
     //board specific methods
     private void init() { //initialize the board
         boxes = new Box[rowSize*colSize]; //array of boxes
         for (int i = 0; i < boxes.length; i++) {
             Box b = new Box(i/colSize, i%colSize); //make a new box and set it's row and col value
+            b.setPlaceHolder(Integer.toString(i));
             boxes[i] = b;
         }
     }
     private void changeBoxes() { //change all DASH placeholder to * to indicate a won board
         if (gameOver()) { //make sure game is over
             for (int i = 0; i < boxes.length; i++) {
-                if (boxes[i].isAvailableDash()) { //if its available and a DASH
+                if (boxes[i].isAvailable()) { //if its available and a DASH
                     boxes[i].setPlaceHolder("*"); //change it
                 }
             }

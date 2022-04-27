@@ -34,13 +34,8 @@ public class Box { //box is the basis of every board. consists of a row and col 
         }
         return false;
     }
-    public boolean isAvailableDash() { //is the box available and a DASH
-        return this.placeHolder.equals(Box.DASH);
-    }
     public boolean isAvailable() { //is the box available
-        if (this.placeHolder.equals(Box.DASH))
-            return true;
-        if (this.placeHolder.equals("*"))
+        if ((!this.placeHolder.equals("O") && !this.placeHolder.equals("X")) || (this.placeHolder.equals("*")))
             return true;
         return false;
     }

@@ -24,4 +24,5 @@ public interface IBoard { //interface called IBoard
     boolean isFull();
     boolean gameOver();
     void print();
+    void printBoard(int index);
 }

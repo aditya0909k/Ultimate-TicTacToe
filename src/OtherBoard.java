@@ -106,24 +106,33 @@ public class OtherBoard{
 			System.out.println();
 		}
 	}
+	public void printBoard(int index) { //print out the board in the formatted way
+		index*=getRowSize(); //multiply index by 3 to use for formula
+		int row = index/getRowSize(); //use formula to get row
+		int col = index - (row*getRowSize()); //use formula to get col
+		for (int column = 0; column < boardRowSize; column++) { //go 3 times
+			System.out.print(board[row][col+column] + " | "); //print out at that row + col+column. column signifies the place in the row.
+		}
+	}
 	//all board specific methods
 	public void setName(String name) { //set name
 		this.name = name;
 	}
 	private void init() { //initialize our board
+		int index = 0;
 		this.board = new char[boardRowSize][boardColSize]; //create a 2d array XxX size
 		for(int i = 0 ; i < board.length; i++){
 			for(int j = 0 ; j < board[i].length; j++){
-				board[i][j] = Mark.DASH.getMark().charAt(0); //set all boxes to DASH at start
+				String numString = Integer.toString(index);
+				board[i][j] = numString.charAt(0); //set all boxes to DASH at start
+				index++; 
 			}
 		}
 	}
 	private boolean isBoxAvailable(int row, int col) { //is the box available?
-		if(board[row][col] == Mark.DASH.getMark().charAt(0)) //if its a dash
-			return true;
-		if (board[row][col] == '*') //or a star
-			return true; //return true
-		return false;
+		if ((board[row][col] != 'O' && board[row][col] != 'X') || board[row][col] == '*') //if its not a mark, or its a star
+            return true; //its available
+		return false; 
 	}
 	private void changeBoxes() { //change our boxes
 		if (gameOver()) { //make sure game is over

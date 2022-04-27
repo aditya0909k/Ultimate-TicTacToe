@@ -74,4 +74,8 @@ public class OtherBoardWrapper implements IBoard{
     public boolean isBoxAvailable(int box) { //return if otherboard's box is available
         return otherboard.isBoxAvailable(box);
     }
+    @Override
+    public void printBoard(int index) {
+        otherboard.printBoard(index);
+    }
 }

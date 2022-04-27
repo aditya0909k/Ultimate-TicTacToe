@@ -168,15 +168,22 @@ public class UltimateTTT {
             currentIndex--;
         }
     }
-
-    //
-    //
-    // need to change print method... a lot
-    //
-    //
     public void print() {         
-        for (int i = 0; i < boards.length; i++) {
-            boards[i].print();
+        int boardNumber = 0;
+        for (int ultimateRow = 0; ultimateRow < gameRowSize; ultimateRow++) {
+            boardNumber = ultimateRow * gameColSize;
+            for (int boardRow = 0; boardRow < gameColSize; boardRow++) {
+                System.out.print("BOARD#" + boardNumber + " | ");
+                boards[boardNumber].printBoard(boardRow);
+
+                System.out.print("\tBOARD#" + (boardNumber + 1) + " | ");
+                boards[boardNumber + 1].printBoard(boardRow);
+
+                System.out.print("\tBOARD#" + (boardNumber + 2) + " | ");
+                boards[boardNumber + 2].printBoard(boardRow);
+
+                System.out.println();
+            }
         }
         for (int i = 0; i < boards.length; i++) {
             if (boards[i].gameOver()) {
@@ -185,12 +192,6 @@ public class UltimateTTT {
         }
         System.out.println();
     }
-    //
-    //
-    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    //
-    //
-
     private boolean isFull() { //is our board full?
         return isFull(boards); //call helper method on boards array
     }
