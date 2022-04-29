@@ -25,7 +25,6 @@ public class OtherBoard{
 	private String name;
 	private String winner;
 	private boolean gameOver = false;
-	private int boardNumber;
 
 	OtherBoard(){ //constructor defaults 3x3 board
 		this(3, 3, "TTT 2D array of char");
@@ -37,12 +36,6 @@ public class OtherBoard{
 	//all iboard methods
 	public String getWinner() { //return winner
 		return winner;
-	}
-	public void setBoardNumber(int num) { //set boardnum
-		this.boardNumber = num;
-	}
-	public int getBoardNumber() { //return boardnum
-		return boardNumber;
 	}
 	public String getName() { //return name
 		return this.name;
@@ -98,25 +91,16 @@ public class OtherBoard{
 			return true;
 		return false;
 	}
-	public void printMyBoard() { //print out board
-		System.out.println("printing the " + this.name + " - " + this.boardRowSize + "*" + this.boardColSize + " board info....");
-		for(int row = 0 ; row < getRowSize(); row++) {
-			for(int col = 0 ; col < getColSize(); col++) {
-				System.out.print(board[row][col] + " "); //loop through all boxes, print each one
-			}
-			System.out.println();
-		}
-	}
 	public void printBoard(int index) { //print out the board in the formatted way
 		index*=getRowSize(); //multiply index by 3 to use for formula
 		int row = index/getRowSize(); //use formula to get row
-		int col = index - (row*getRowSize()); //use formula to get col
-		for (int column = 0; column < boardRowSize; column++) { //go 3 times
-			System.out.print(board[row][col+column] + " | "); //print out at that row + col+column. column signifies the place in the row.
+		int col = index - (row*getRowSize()); //use formula to get col (will always be 0)
+		for (int colAdd = 0; colAdd < boardRowSize; colAdd++) { //go 3 times
+			System.out.print(board[row][col+colAdd] + " | "); //print out at that row + col+column. column signifies the place in the row.
 		}
 	}
 	//all board specific methods
-	public void setName(String name) { //set name
+	private void setName(String name) { //set name
 		this.name = name;
 	}
 	private void init() { //initialize our board

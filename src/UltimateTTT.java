@@ -89,13 +89,11 @@ public class UltimateTTT {
         boards = new IBoard[gameRowSize*gameColSize]; //create an IBoard array size of rowsize*colsize
         for (int i = 0; i < boards.length; i++) {
             this.boards[i] = new Board(gameRowSize, gameColSize, "TTTGame"); //for every IBoard in the array, create a new Board and place it there
-            this.boards[i].setBoardNumber(i); //set the board number
         }
     }
     public void setBoard(IBoard[] boards) { //set our board if we are given a differnt type of board
         for (int i = 0; i < boards.length; i++) {
             this.boards[i] = boards[i]; //for each board in UltimateTTT boards, set it as other type of board
-            this.boards[i].setBoardNumber(i); //set the board number
         }
     }
     public void start() {
@@ -215,8 +213,21 @@ public class UltimateTTT {
         if (checkBoardDiagRL()) { //check the top right to bottom left diagonal
             return true;
         }
-        if (isFull()) { //if its full and no winner yet, it is tied
+        if (isFull() || allBoardsGameOver()) { //if its full and no winner yet, it is tied
             ultimateWinner = "Tie";
+            return true;
+        }
+        return false;
+    }
+    //check if all boards games are over
+    private boolean allBoardsGameOver() {
+        int count = 0;
+        for (int i = 0; i < boards.length; i++) {
+            if (boards[i].gameOver() || boards[i].isFull()) {
+                count++;
+            }
+        }
+        if (count == gameRowSize*gameColSize) {
             return true;
         }
         return false;
@@ -289,7 +300,7 @@ public class UltimateTTT {
     //RL checking
     private boolean checkBoardDiagRL() { //check top right to bottom left diagonal for 3 boards in a row won
         int counter = 0;
-        for (int i = gameRowSize-1; i < (gameRowSize*gameColSize)-2; i+=gameRowSize-1) {  //start at rowsize-1 which is the top right square, go until rowsize*colsize-2 because that is the bottom left square, add rowsize-1 each time to get the next diagonal square
+        for (int i = gameRowSize-1; i < (gameRowSize*gameColSize)-gameRowSize; i+=gameRowSize-1) {  //start at rowsize-1 which is the top right square, go until rowsize*colsize-2 because that is the bottom left square, add rowsize-1 each time to get the next diagonal square
             if ((isWinnerOfBoard(boards[i]) && isWinnerOfBoard(boards[i+gameRowSize-1]))) {  //if there is a winner of currentsquare and its diagonal
                 if (!boards[i].getWinner().equals("Tie") && boards[i].getWinner().equals(boards[i+gameRowSize-1].getWinner()))  //make sure winner isnt Tie and also make sure they are both the same winner
                     counter++;

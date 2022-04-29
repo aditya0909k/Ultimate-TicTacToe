@@ -14,15 +14,12 @@ public interface IBoard { //interface called IBoard
     int getColSize();
     String getName();
     String getWinner();
-    int getBoardNumber();
     String getMark(int row, int col);
     void setWinner(String winner);
-    void setBoardNumber(int num);
     void setSize(int row, int col);
     boolean makeMove(String player, int square);
     boolean isBoxAvailable(int box);
     boolean isFull();
     boolean gameOver();
-    void print();
     void printBoard(int index);
 }

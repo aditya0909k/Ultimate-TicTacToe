@@ -27,7 +27,6 @@ public class Board implements IBoard{ //Board class implements the IBoard interf
     private int rowSize;
     private int colSize;
     private String winner = "";
-    private int boardNumber; //for printing purposes, tells us which board this is
     private boolean gameOver = false;    
     
     public Board() { //default constructor passes in a 3x3 board to second constructor
@@ -37,7 +36,6 @@ public class Board implements IBoard{ //Board class implements the IBoard interf
         this.setName(name);
         this.setSize(rowSize, colSize);
     }
-
     //iboard methods
     @Override
     public int getRowSize() { //return rowsize
@@ -53,14 +51,6 @@ public class Board implements IBoard{ //Board class implements the IBoard interf
     }
     public void setName(String name) { //set name
         this.name = name;
-    }
-    @Override
-    public void setBoardNumber(int num) { //set boardnum
-        this.boardNumber = num;
-    }
-    @Override
-    public int getBoardNumber() { //get boardnum
-        return boardNumber;
     }
     @Override
     public String getMark(int row, int col) { //get the mark at row and col
@@ -108,22 +98,6 @@ public class Board implements IBoard{ //Board class implements the IBoard interf
                 return false;
         }
         return true;
-    }
-    @Override
-    public void print() { //print the board
-        for (int i = 0; i < boxes.length; i++) { //for all the boxes in board
-            if (i != 0 && i%colSize == 0) {  //based on if it is a starting box in a row
-                System.out.println();
-                System.out.print(" | "); 
-            }
-            if (i == 0) { //if its the first box
-                System.out.println("BOARD #" + getBoardNumber());
-                System.out.print(" | ");;
-            }
-            boxes[i].print();
-            System.out.print( "| ");
-        }
-        System.out.println("");
     }
     @Override
     public void printBoard(int index) { //print the board based on index

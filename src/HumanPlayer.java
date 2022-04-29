@@ -49,7 +49,7 @@ public class HumanPlayer extends APlayer{ //HumanPlayer extends the APlayer clas
                 boardSquare = Integer.parseInt(boardSquareString);
             } catch (Exception e) {System.out.println("Invalid character! Enter a number from 0 to " + range); continue;} //if it is not a string, sysout that its invalid, and use continue to repeat loop
             if (boardSquare < 0 || boardSquare > range) { //make sure boardSquare is in our range
-                System.out.println("Invalid board! Enter a number from 0 to " + range); //if its isn't sysout that its not
+                System.out.println("Invalid square! Enter a number from 0 to " + range); //if its isn't sysout that its not
             }
         } while (boardSquare < 0 || boardSquare > range); //while boardsquare isn't in range, keep doing this loop
         return boardSquare;

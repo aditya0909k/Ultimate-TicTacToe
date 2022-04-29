@@ -20,10 +20,6 @@ public class OtherBoardWrapper implements IBoard{
         otherboard = new OtherBoard(row, col, name);
     }
     @Override
-    public void print() { //get otherboard's print method
-        otherboard.printMyBoard();
-    }
-    @Override
     public String getMark(int row, int col) { //return otherboard's getmark
         return otherboard.getMark(row, col);
     }
@@ -62,14 +58,6 @@ public class OtherBoardWrapper implements IBoard{
     @Override
     public boolean gameOver() { //return if otherboard game is over
         return otherboard.gameOver();
-    }
-    @Override
-    public void setBoardNumber(int num) { //set otherboard's board number
-        otherboard.setBoardNumber(num);
-    }
-    @Override
-    public int getBoardNumber() { //return otherboard's baord number
-        return otherboard.getBoardNumber();
     }
     @Override
     public boolean isBoxAvailable(int box) { //return if otherboard's box is available
