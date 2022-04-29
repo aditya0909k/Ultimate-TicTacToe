@@ -43,7 +43,10 @@ allow the user to continue picking a square until it is valid. Once the square i
 set squareActingAsNewBoard to that square the user picked, to follow the rules of the game. We will also update prevPlayer.
 
 In the gameOver function, we are checking for the method isWinnerOfUltimateBoard, and once it is returned as true, gameOver will
-be returned as true, and our game will stop. In this method, we will also print who the winner of the game is, or if it is a tie.
+be returned as true, and our game will stop. In this method, we will also print who the winner of the game is, or if it is a tie. 
+isWinnerOfUltimateBoard checks all boards rows, columns, diagonals, and calls isFull() and allBoardsGameOver(), to see if the entire
+board is full or if all the games are over. In this case, it would be a tie. 
+allBoardsGameOver() is simply a loop checking through all boards and seeing if they are all finished playing out.
 
 In switchPlayer, we will switch the index based on the current index to change who is playing.
 
@@ -143,7 +146,7 @@ public class UltimateTTT {
         } while(!gameOver()); //continue this loop while the game is not over
     }
     private boolean gameOver() { //Check if there is a winner of the game
-        if (isWinnerOfUltimateBoard()) { //if there is an ultiamte winner
+        if (isWinnerOfUltimateBoard()) { //if there is an ultimate winner
             print(); //print the final board
             if (ultimateWinner.equals("Tie")) { //if it is a tie
                 System.out.println();
@@ -220,15 +223,15 @@ public class UltimateTTT {
         return false;
     }
     //check if all boards games are over
-    private boolean allBoardsGameOver() {
+    private boolean allBoardsGameOver() { //method to check if all the board's in the UltimateTTT game are all won by someone or tied
         int count = 0;
-        for (int i = 0; i < boards.length; i++) {
-            if (boards[i].gameOver() || boards[i].isFull()) {
+        for (int i = 0; i < boards.length; i++) { //for all boards
+            if (isWinnerOfBoard(boards[i]) || boards[i].gameOver() || boards[i].isFull()) { //check if a game is over/board is full. 
                 count++;
             }
         }
-        if (count == gameRowSize*gameColSize) {
-            return true;
+        if (count == gameRowSize*gameColSize) { //if its equal to rowsize*colsize, which is how many boards there are in total
+            return true; //all are over is true
         }
         return false;
     }
