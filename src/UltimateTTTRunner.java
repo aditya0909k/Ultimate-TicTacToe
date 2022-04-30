@@ -25,7 +25,7 @@ public class UltimateTTTRunner { //main runner
             boards[i] = new OtherBoardWrapper();
         }
         TTTGame.setBoard(boards);
-        TTTGame.setPlayers(new HumanPlayer("Player1", "X"), new HumanPlayer("Player2", "O"));
+        //TTTGame.setPlayers(new HumanPlayer("Player1", "X"), new HumanPlayer("Player2", "O"));
         TTTGame.start(); //start
     }
 }
