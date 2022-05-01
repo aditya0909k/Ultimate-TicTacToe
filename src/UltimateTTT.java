@@ -172,17 +172,14 @@ public class UltimateTTT {
     }
     public void print() { //print the board in the formatted way
         int boardNumber = 0; //current board number
-        for (int ultimateRow = 0; ultimateRow < gameRowSize; ultimateRow++) { //the row of the ultiamte board
+        for (int ultimateRow = 0; ultimateRow < gameRowSize; ultimateRow++) { //the row of the ultimate board
             boardNumber = ultimateRow * gameColSize; //set boardnumber to each first column of each row
-            for (int boardRow = 0; boardRow < gameColSize; boardRow++) { //the board row that we want to print
-                System.out.print("\tBOARD#" + boardNumber + " | ");
-                boards[boardNumber].printBoard(boardRow); //print the row of the board
-
-                System.out.print("\tBOARD#" + (boardNumber + 1) + " | ");
-                boards[boardNumber + 1].printBoard(boardRow); //print the row of the board+1
-
-                System.out.print("\tBOARD#" + (boardNumber + 2) + " | ");
-                boards[boardNumber + 2].printBoard(boardRow); //print the row of the board+2
+            for (int boardRow = 0; boardRow < boards[0].getRowSize(); boardRow++) { //the board row that we want to print. go to boards[0].getRowSize() because we know all boards in game will be same size.
+                for (int col = 0; col < gameColSize; col++) { //print out for each column of the ultimate board
+                    int num = boardNumber + col; //make an integer to store num since sysout boardNumber+col would be 00, 01, etc
+                    System.out.print("\tBOARD#" + num + " | ");
+                    boards[num].printBoard(boardRow); //print the row of the board
+                }
                 System.out.println(); 
             }
         }
