@@ -1,3 +1,5 @@
+<img width="544" alt="Screen Shot 2022-04-30 at 11 41 15 PM" src="https://user-images.githubusercontent.com/85547196/166133164-a5e9db9c-e85b-42e1-a2fd-d1786c5129d6.png">
+
 This is a working version of the Ultimate Tic-Tac-Toe Game, where the TTT game consists of 9 individual boards.
 
 In this game, I implemented a version of the Ultimate TTT Game using an array of 9 boards. 
